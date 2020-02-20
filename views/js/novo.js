@@ -51,17 +51,19 @@ Array.from(bt).forEach(function (button) {
   button.addEventListener('click',function(){
     let id = JSON.stringify(this.id)
     console.log(id)
-
+    alert("Adicionado")
      $.ajax({
       url: 'http://localhost:3000/atualizar',
       type: 'POST',
       data: { id: id}
       }).done(function(res) {
           if (res.success) {
+            
           console.log('id from ajax call is', res);
           window.location.reload();
       } else {
           console.log('error...ajax');
+          alert("não foi adicionado")
           }
     
   })
