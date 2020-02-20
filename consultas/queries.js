@@ -1,65 +1,60 @@
+const body = require('body-parser');
 const Pool = require('pg').Pool
+const storage = require('sessionstorage')
 
 const pool = new Pool({
   user: 'postgres',
   host: 'localhost',
-  database: 'IBGE2',
+  database: 'loja',
   password: 'postgres',
   port: 5432,
 })
 
-const getSVG = (request, response) => {
-    const municipio = request.params.nome
-    console.log(municipio)
-    
-    pool.query('SELECT ST_AsSVG(geom) FROM municipio WHERE nome ilike $1', [municipio], (error, results) => {
-      if (error) {
-        throw error
-      }
-      console.log(results.rows)
-      response.status(200).json(results.rows)
-    })
+async function autenthiClient(email, senha){
+  return new Promise((resolve,rejected) => {
+      storage.setItem('email',email) 
+      
+       
+      let autentic = pool.query("SELECT COUNT(*) FROM Cliente WHERE email = $1 and senha = $2", [email, senha])
+      autentic.on('row', function(row){
+          if(row.count){
+             resolve(true);
+          }else{
+              resolve(false);
+          }
+      });
+
+      autentic.on('end', () => {
+          
+      })
+  })
 }
 
-const getViewBox = (request, response) => {
-    const municipio = request.params.nome
-  
-    pool.query('SELECT getViewBox($1)', [municipio], (error, results) => {
-      if (error) {
-        throw error
-      }
-      response.status(200).json(results.rows)
-    })
-}
-
-const getCidade = (request, response) => {
-  const municipio = request.params.nome
-
-  pool.query('SELECT m.nome AS cidade FROM municipio m, estado e WHERE e.nome ilike $1 AND ST_Within(m.geom, e.geom) order by m.nome asc', [municipio] ,(error, results) => {
+const getProduto = (request,response) => {
+  pool.query('SELECT * FROM produto ', (error, results) => {
     if (error) {
       throw error
     }
+    console.log(results.rows)
     response.status(200).json(results.rows)
   
 
   })
 }
 
-const getEstado = (request,response) => {
-  pool.query('SELECT nome FROM estado order by nome asc', (error, results) => {
-    if (error) {
+const login1 = (request) => {
+  pool.query('select * from login', (error, results) => {
+    if (request.body.email == results ){
+      console.log("logou")
+
       throw error
     }
-    response.status(200).json(results.rows)
-  
-
+    console.log("deu merda")
   })
 }
-
 
 module.exports = {
-    getSVG,
-    getViewBox,
-    getCidade,
-    getEstado
+    getProduto,
+    login1,
+    autenthiClient
 }

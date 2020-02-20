@@ -10,10 +10,19 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bluebird": "^3.7.1",
+    "body-parser": "^1.19.0",
     "cors": "^2.8.5",
+    "ejs": "^3.0.1",
     "express": "^4.17.1",
+    "express-session": "^1.17.0",
     "expresss": "0.0.0",
+    "mongoose": "^5.7.12",
     "nodemon": "^1.19.4",
-    "pg": "^7.12.1"
+    "pg": "^7.12.1",
+    "redis": "^2.8.0",
+    "server": "^1.0.21",
+    "sessionstorage": "^0.1.0",
+    "static": "^2.0.0"
   }
 }

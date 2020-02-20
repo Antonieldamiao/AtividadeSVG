@@ -1,0 +1,65 @@
+body {
+    height: 100%;
+    width: 100%;
+    
+    background-image: linear-gradient( rgba(253, 249, 13, 0.781),rgba(6, 7, 1, 0.795)) ;
+    background-size: 100%;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    font-family: 'Lobster' !important;
+   
+}
+
+form{
+    align-items: center !important;
+   width: auto auto;
+   padding: 5%;
+    color: black;
+    text-shadow: -1px 0 rgba(255, 255, 255, 0.719), 0 1px rgba(255, 255, 255, 0.548),
+    1px 0 rgba(255, 255, 255, 0.61), 0 -1px rgba(255, 255, 255, 0.61);
+    
+    
+}
+button{
+    
+    width: 150px;
+    font-size: 23px !important;
+    border: 15px;
+}
+button:hover{
+    background-color: black !important;
+    color: yellow !important;
+}
+
+a,a:link{
+    color: rgb(8, 8, 6) !important;
+    text-decoration:none; 
+    font-size: 20px;
+    
+}
+h1{
+    text-align: center;
+    color: yellow;
+    font-family: 'dosis' , sans-serif;
+    text-shadow: -1px 0 black, 0 1px black,
+      1px 0 black, 0 -1px black;
+}
+
+#imageBar{
+    image-rendering: auto;
+    margin-top:  5px !important;
+    margin-left: 32.5%;
+    width: 40% !important;
+    height: 80% !important;
+  
+  }
+  #navLogin{
+    height: 15%;
+   
+  }
+  #painel{
+    width: 100% !important;
+    height: 100% !important;
+    background-color: transparent;
+    background-size: 100% !important;
+  }
